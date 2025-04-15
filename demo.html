@@ -2,183 +2,97 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LADbible Trending</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LADbible Mobile</title>
   <link rel="manifest" href="manifest.json" />
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      margin: 0;
-      background-color: #f9f9f9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script defer src="tracking.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
     }
-
-    header {
-      background-color: #ffffff;
-      padding: 1rem;
-      width: 100%;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      text-align: center;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      color: #333;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 800px;
-      box-sizing: border-box;
-    }
-
-    .tile {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.2s;
-    }
-
-    .tile:hover {
-      transform: translateY(-4px);
-    }
-
-    .tile img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-    }
-
-    .tile-content {
-      padding: 0.75rem;
-    }
-
-    .tile-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin: 0;
-      color: #222;
-    }
-
-    footer {
-      margin-top: auto;
-      padding: 1rem;
-      font-size: 0.85rem;
-      color: #888;
-      text-align: center;
-    }
-  </style>
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>🔥 LADbible Trending</h1>
-  </header>
-
-  <div class="grid">
-    <!-- 10 Articles -->
-    <a href="#" class="tile" target="_blank" onclick="trackTile('Article 1')">
-      <img src="https://via.placeholder.com/400x200?text=Article+1" alt="Article 1">
-      <div class="tile-content">
-        <p class="tile-title">Article Title 1</p>
-      </div>
-    </a>
-    <a href="#" class="tile" target="_blank" onclick="trackTile('Article 2')">
-      <img src="https://via.placeholder.com/400x200?text=Article+2" alt="Article 2">
-      <div class="tile-content">
-        <p class="tile-title">Article Title 2</p>
-      </div>
-    </a>
-    <a href="#" class="tile" target="_blank" onclick="trackTile('Article 3')">
-      <img src="https://via.placeholder.com/400x200?text=Article+3" alt="Article 3">
-      <div class="tile-content">
-        <p class="tile-title">Article Title 3</p>
-      </div>
-    </a>
-    <a href="#" class="tile" target="_blank" onclick="trackTile('Article 4')">
-      <img src="https://via.placeholder.com/400x200?text=Article+4" alt="Article 4">
-      <div class="tile-content">
-        <p class="tile-title">Article Title 4</p>
-      </div>
-    </a>
-    <a href="#" class="tile" target="_blank" onclick="trackTile('Article 5')">
-      <img src="https://via.placeholder.com/400x200?text=Article+5" alt="Article 5">
-      <div class="tile-content">
-        <p class="tile-title">Article Title 5</p>
-      </div>
-    </a>
-    <a href="#" class="tile" target="_blank" onclick="trackTile('Article 6')">
-      <img src="https://via.placeholder.com/400x200?text=Article+6" alt="Article 6">
-      <div class="tile-content">
-        <p class="tile-title">Article Title 6</p>
-      </div>
-    </a>
-    <a href="#" class="tile" target="_blank" onclick="trackTile('Article 7')">
-      <img src="https://via.placeholder.com/400x200?text=Article+7" alt="Article 7">
-      <div class="tile-content">
-        <p class="tile-title">Article Title 7</p>
-      </div>
-    </a>
-    <a href="#" class="tile" target="_blank" onclick="trackTile('Article 8')">
-      <img src="https://via.placeholder.com/400x200?text=Article+8" alt="Article 8">
-      <div class="tile-content">
-        <p class="tile-title">Article Title 8</p>
-      </div>
-    </a>
-    <a href="#" class="tile" target="_blank" onclick="trackTile('Article 9')">
-      <img src="https://via.placeholder.com/400x200?text=Article+9" alt="Article 9">
-      <div class="tile-content">
-        <p class="tile-title">Article Title 9</p>
-      </div>
-    </a>
-    <a href="#" class="tile" target="_blank" onclick="trackTile('Article 10')">
-      <img src="https://via.placeholder.com/400x200?text=Article+10" alt="Article 10">
-      <div class="tile-content">
-        <p class="tile-title">Article Title 10</p>
-      </div>
-    </a>
+<body class="bg-gray-100 text-gray-900">
+  <div class="max-w-md mx-auto py-6 px-4">
+    <h1 class="text-3xl font-bold mb-6 text-center">LADbible Highlights</h1>
+    <div id="articles" class="space-y-4">
+      <!-- Articles will be injected here -->
+    </div>
   </div>
 
-  <footer>
-    News from <a href="https://ladbible.com" target="_blank">LADbible</a> · Tracked via Lytics
-  </footer>
-
-  <!-- Lytics SDK -->
   <script>
-    (function() {
-      var lytics = document.createElement('script');
-      lytics.src = 'https://c.lytics.io/api/tag/YOUR-COLLECT-TOKEN/async.js';
-      lytics.async = true;
-      document.head.appendChild(lytics);
-    })();
-  </script>
-
-  <!-- Lytics Event Tracking -->
-  <script>
-    window.lytics = window.lytics || [];
-    window.lytics.push(['identify', {
-      email: 'user@example.com',
-      user_id: '12345'
-    }]);
-
-    window.lytics.push(['track', 'pageview']);
-
-    function trackTile(title) {
-      if (window.lytics) {
-        window.lytics.push(['track', 'tile_click', { title }]);
-        console.log(`Lytics tracked: ${title}`);
+    const articles = [
+      {
+        title: "Man Discovers Secret Room Behind His Wardrobe",
+        url: "https://www.ladbible.com/news/room-behind-wardrobe",
+        image: "https://via.placeholder.com/400x200?text=Secret+Room"
+      },
+      {
+        title: "Dog Goes Viral For Hilarious Facial Expression",
+        url: "https://www.ladbible.com/community/viral-dog-face",
+        image: "https://via.placeholder.com/400x200?text=Funny+Dog"
+      },
+      {
+        title: "AI Creates Terrifying Horror Story That Feels Too Real",
+        url: "https://www.ladbible.com/technology/ai-horror-story",
+        image: "https://via.placeholder.com/400x200?text=AI+Horror"
+      },
+      {
+        title: "Guy Builds Rollercoaster in His Backyard",
+        url: "https://www.ladbible.com/entertainment/backyard-rollercoaster",
+        image: "https://via.placeholder.com/400x200?text=DIY+Coaster"
+      },
+      {
+        title: "Teacher Wins £500K on Game Show",
+        url: "https://www.ladbible.com/news/teacher-wins-money",
+        image: "https://via.placeholder.com/400x200?text=Game+Show+Win"
+      },
+      {
+        title: "Scientists Say Pizza Is Technically a Superfood",
+        url: "https://www.ladbible.com/food/pizza-superfood",
+        image: "https://via.placeholder.com/400x200?text=Pizza+News"
+      },
+      {
+        title: "Kid Corrects Astronaut Live on TV and Was Right",
+        url: "https://www.ladbible.com/news/kid-corrects-astronaut",
+        image: "https://via.placeholder.com/400x200?text=Smart+Kid"
+      },
+      {
+        title: "Man Sets Record For Most Socks Worn At Once",
+        url: "https://www.ladbible.com/funny/sock-record",
+        image: "https://via.placeholder.com/400x200?text=Sock+Record"
+      },
+      {
+        title: "Girl Finds 1,000-Year-Old Coin in Her Backyard",
+        url: "https://www.ladbible.com/news/ancient-coin",
+        image: "https://via.placeholder.com/400x200?text=Ancient+Coin"
+      },
+      {
+        title: "Guy Uses Drone To Walk His Dog",
+        url: "https://www.ladbible.com/technology/drone-dog",
+        image: "https://via.placeholder.com/400x200?text=Drone+Dog"
       }
-    }
+    ];
+
+    const container = document.getElementById('articles');
+    articles.forEach(article => {
+      const card = document.createElement('a');
+      card.href = article.url;
+      card.target = "_blank";
+      card.className = "block bg-white rounded-2xl shadow p-4 hover:shadow-lg transition";
+      card.innerHTML = `
+        <img src="${article.image}" alt="${article.title}" class="rounded-xl mb-3 w-full h-48 object-cover">
+        <h2 class="text-lg font-semibold">${article.title}</h2>
+      `;
+      card.addEventListener('click', () => {
+        if (window.trackEvent) {
+          window.trackEvent('article_click', article.title);
+        }
+      });
+      container.appendChild(card);
+    });
   </script>
 </body>
 </html>
