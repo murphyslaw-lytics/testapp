@@ -1,7 +1,7 @@
 {
   "name": "My Mobile Web App",
   "short_name": "WebApp",
-  "start_url": "./demo.html",
+  "start_url": "https://murphyslaw-lytics.github.io/testapp/demo.html",
   "display": "standalone",
   "background_color": "#f0f0f0",
   "theme_color": "#ffffff",
