@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Mobile Web App</title>
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome 👋</h1>
+    <p>This is your mobile web app with Lytics tracking.</p>
+  </div>
+
+  <!-- Lytics SDK -->
+  <script>
+    (function() {
+      var lytics = document.createElement('script');
+      lytics.src = 'https://c.lytics.io/api/tag/YOUR-COLLECT-TOKEN/async.js';
+      lytics.async = true;
+      document.head.appendChild(lytics);
+    })();
+  </script>
+
+  <!-- Lytics Event Tracking -->
+  <script>
+    window.lytics = window.lytics || [];
+    window.lytics.push(['identify', {
+      email: 'user@example.com',  // Replace or dynamically populate
+      user_id: '12345'           // Optional: customize for your users
+    }]);
+
+    window.lytics.push(['track', 'pageview']);
+    console.log("Lytics tracking initialized.");
+  </script>
+</body>
+</html>
